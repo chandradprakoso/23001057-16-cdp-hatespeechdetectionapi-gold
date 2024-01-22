@@ -75,13 +75,6 @@ def text_processing():
     query = "INSERT INTO users (text, textclean) VALUES (?, ?)"
     cursor.execute(query, (text, text_clean))
  
-    #conn.execute("CREATE TABLE IF NOT EXIST users (text varchar(255), textclean varchar(255));")
-
-    #conn.execute('''CREATE TABLE usersx (texta varchar(255), textclean varchar(255));''')
-
-
-    #conn.execute('''INSERT INTO userx (texta, textclean) VALUES (text, text_clean)''')
-
     conn.commit()
     cursor.close()
 
@@ -113,26 +106,8 @@ def file_processing():
     for text in texts:
         text_clean.append(re.sub(r'[^a-zA-Z0-9]', ' ', text))
         #text_clean.append(clean_text_file(text))
-
-    
-    conn = sqlite3.connect('/Users/chandra/Documents/BINAR_DSC_ENV/.venv/data/binar7_dsc.db')
-    cursor = conn.cursor()
-        
-    query = "CREATE TABLE usersx (text varchar(255), textclean varchar(255));"
-    query_table1 = "INSERT INTO usersx (text) VALUES (?)"
-    query_table2 = "INSERT INTO usersx (textclean) VALUES (?)"
-    cursor.executemany(query_table1, texts)
-    cursor.executemany(query_table2, text_clean)
-
-    conn.commit()
-    cursor.close()
-
-       
-    conn.close()
-
-    
-    
-    json_response = {
+     
+        json_response = {
         'data_row' : texts,
         'data_clean' : text_clean,
     }
