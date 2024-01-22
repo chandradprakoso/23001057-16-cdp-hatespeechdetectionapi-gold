@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: Data Cleansing API
+  description: API to cleanse data from a CSV file using Pandas and regex
+  version: 1.0.0
+paths:
+  /cleanse-data:
+    post:
+      summary: Cleanse data from CSV
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                csv_path: /csvpath
+                  type: string
+                  description: Path to the CSV file
+      responses:
+        '200':
+          description: Data cleansing successful
+          content:
+            text/csv: {}
+              example:
+                message: Data cleansing completed successfully

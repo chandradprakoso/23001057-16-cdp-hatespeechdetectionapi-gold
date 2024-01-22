@@ -1,0 +1,79 @@
+swagger: '2.0'
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+info:
+  version: '1.0.0'
+  title: My Api Swagger
+  description: |
+    This tests many paths for my swagger
+
+################################################################################
+#                  Host, Base Path, Schemes and Content Types                  #
+################################################################################
+# The host (name or ip) serving the API
+host: localhost:3000
+
+# The base path on which the API is served, relative to the host. Will be prefixed to all paths. Used to control versioning
+basePath: /v1/
+
+# The transfer protocol of the API
+schemes:
+  - http
+# Format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# Format of the responses to the client (Accepts)
+produces:
+  - application/json
+
+################################################################################
+#                                    Paths                                     #
+################################################################################
+paths:
+  /test:
+    get:
+      summary: Test 1
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: request
+          description: request
+          required: true
+      responses:
+        '200':
+          description: OK
+  /test2:
+    get:
+      summary: Test 2
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: request
+          description: request
+          required: true
+      responses:
+        '200':
+          description: A User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The user ID.
+        username:
+          type: string
+          description: The user name.
